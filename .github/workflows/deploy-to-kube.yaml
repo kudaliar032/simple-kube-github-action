@@ -1,0 +1,22 @@
+name: Deploy to Kubernetes
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Kube-Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Kubernetes Set Context
+        uses: Azure/k8s-set-context@v2
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v1.5s
+        with:
+          manifests: |
+            deployment.yaml
+            service.yaml
