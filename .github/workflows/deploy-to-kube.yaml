@@ -17,6 +17,7 @@ jobs:
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v1.5
         with:
+          namespace: github-action
           manifests: |
             deployment.yaml
             service.yaml
