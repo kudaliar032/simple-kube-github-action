@@ -21,3 +21,5 @@ jobs:
           manifests: |
             deployment.yaml
             service.yaml
+          images: |
+            nginx:1.20
